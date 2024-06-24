@@ -1,8 +1,5 @@
-import hashlib
+from hash_password import hash_password
 import uuid
-
-def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
 
 def register_user(db_conn, username, password):
     try:

@@ -1,19 +1,16 @@
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QIcon
 from register import client_register_user
+from login import client_login_user
 from gui import EncryptiVGUI
-import requests
 import sys
-
-def client_login_user(username, password):
-    pass
 
 
 if __name__ == "__main__":
 
     # Create an instance of QApplication
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon('/home/piyush24/Desktop/Encrypti-V with Postgres/client/logo.png'))
+    app.setWindowIcon(QIcon(r'C:\Users\whack\OneDrive\Desktop\STUFF\Programming STUFF\Python\Encrypti-V\Encrypti-V-with-Postgres\client\logo.png'))
 
     # Create an instance of EncryptiVGUI
     window = EncryptiVGUI()

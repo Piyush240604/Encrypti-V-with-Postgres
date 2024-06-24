@@ -1,16 +1,27 @@
 from flask import Flask, request, jsonify
 from db_conn import get_db_connection
+from authorize import authorize
 from register import register_user
 
 app = Flask(__name__)
 
+# Login User
+@app.route('/login', methods=['POST'])
+def login():
+    # Get the user-details
+    user_data = request.json
+    username = user_data.get('username')
+    password = user_data.get('password')
+
+    # Authorize the data
+    user_id = authorize(db_conn, username, password)
+
+    # Return User_ID
+    return jsonify({'user_id': user_id})
+
 # Register user
 @app.route('/register', methods=['POST'])
 def register():
-
-    if db_conn:
-        print("Hello World")
-    
     # Get the user-details
     user_data = request.json
     username = user_data.get('username')
@@ -24,8 +35,6 @@ def register():
         return jsonify({'message': 'User Registered Successfully'})
     else:
         return jsonify({'message': str(registration)})
-    
-    
 
 if __name__ == '__main__':
 
