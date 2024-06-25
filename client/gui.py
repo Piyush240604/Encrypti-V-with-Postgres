@@ -19,7 +19,7 @@ class EncryptiVGUI(QMainWindow):
 
     def set_background(self):
         self.background_label = QLabel(self)
-        self.movie = QMovie(r"C:\Users\whack\OneDrive\Desktop\STUFF\Programming STUFF\Python\Encrypti-V\Encrypti-V-with-Postgres\client\background.gif")
+        self.movie = QMovie("background.gif")
         self.movie.setSpeed(25)
         self.background_label.setMovie(self.movie)
         self.movie.start()
