@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QMessageBox, QFileDialog
 from PyQt5.QtGui import QGuiApplication, QMovie
 
 class EncryptiVGUI(QMainWindow):
@@ -19,11 +19,12 @@ class EncryptiVGUI(QMainWindow):
 
     def set_background(self):
         self.background_label = QLabel(self)
-        self.movie = QMovie("background.gif")
+        self.movie = QMovie(r"assets\background.gif")
         self.movie.setSpeed(25)
         self.background_label.setMovie(self.movie)
         self.movie.start()
-        self.background_label.setGeometry(0, 0, 400, 250)
+        self.background_label.setGeometry(0, 0, 700, 350)
+        self.background_label.lower()
 
     def create_labels(self):
         self.welcome_label = self.create_label("Welcome to Encrypti V", 90, 30, 250, 20, 16)
@@ -40,12 +41,20 @@ class EncryptiVGUI(QMainWindow):
         return label
 
     def create_buttons(self):
+        # Username and Password Field
         self.username_field = self.create_text_field(140, 80, 200, 25)
         self.password_field = self.create_text_field(140, 120, 200, 25, True)
+        
+        # Login and Register Button
         self.login_button = self.create_button("Login", 140, 160, 90, 30)
         self.register_button = self.create_button("Register", 250, 160, 90, 30)
-        self.encrypt_file_button = self.create_button("Encrypt", 100, 110, 90, 30)
-        self.decrypt_file_button = self.create_button("Decrypt", 210, 110, 90, 30)
+
+        self.encrypt_file_button = self.create_button("Encrypt File", 100, 110, 90, 30)
+        self.decrypt_file_button = self.create_button("Decrypt File", 100, 150, 90, 30)
+
+        # Encrypt Folder and Decrypt Folder Button
+        self.encrypt_folder_button = self.create_button("Encrypt Folder", 210, 110, 90, 30)
+        self.decrypt_folder_button = self.create_button("Decrypt Folder", 210, 150, 90, 30)
 
     def create_text_field(self, x, y, width, height, password=False):
         field = QLineEdit(self)
@@ -61,7 +70,7 @@ class EncryptiVGUI(QMainWindow):
 
     def hide_components(self, button_id):
         if button_id == 1:
-            for widget in [self.encrypt_file_button, self.decrypt_file_button]:
+            for widget in [self.encrypt_file_button, self.decrypt_file_button, self.encrypt_folder_button, self.decrypt_folder_button]:
                 widget.hide()
         elif button_id == 2:
             widgets_to_hide = [
@@ -76,7 +85,7 @@ class EncryptiVGUI(QMainWindow):
         QMessageBox.information(self, "Message", message)
 
     def show_buttons(self):
-        for widget in [self.encrypt_file_button, self.decrypt_file_button]:
+        for widget in [self.encrypt_file_button, self.decrypt_file_button, self.encrypt_folder_button, self.decrypt_folder_button]:
             widget.show()
 
     def pick_file(self):
@@ -84,3 +93,4 @@ class EncryptiVGUI(QMainWindow):
 
     def pick_directory(self):
         return QFileDialog.getExistingDirectory(self, "Pick a directory")
+

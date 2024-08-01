@@ -9,6 +9,10 @@ db_params = {
     'port': '5432'
 }
 
-def get_db_connection():
-    conn = psycopg2.connect(**db_params)
+def get_db_connection() -> object:
+    conn: object = psycopg2.connect(**db_params)
     return conn
+
+if __name__ == '__main__':
+    db_conn = get_db_connection()
+    print(db_conn)

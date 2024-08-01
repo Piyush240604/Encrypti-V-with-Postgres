@@ -1,12 +1,12 @@
 import requests
 
-def authorize_user_id(username, password):
+def authorize_user_id(username, password) -> str:
     # Establish URL and data to be sent to master server
-    url = "http://localhost:5000/login"
-    headers = {
+    url: str = "http://127.0.0.1:5000/login"
+    headers: dict = {
         "Content-Type": "application/json"
     }
-    payload = {
+    payload: dict = {
         "username": username,
         "password": password
     }

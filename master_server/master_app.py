@@ -42,4 +42,4 @@ if __name__ == '__main__':
     db_conn = get_db_connection()
 
     # Run the master server
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=True, threaded=True)
