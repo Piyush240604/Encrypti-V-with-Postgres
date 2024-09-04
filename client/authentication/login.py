@@ -25,8 +25,6 @@ def client_login_user(window):
 
         # Verify User_id
         if user_id:
-
-            print("User ID:", user_id[0], "\nType: ", type(user_id))
             
             # Go to next page
             window.hide_components(2)

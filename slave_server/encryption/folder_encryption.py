@@ -40,7 +40,7 @@ def store_folder(metadata: object, db_conn: object) -> bool:
         # Define the SQL query for inserting data
         insert_query = sql.SQL("""
             INSERT INTO folders (
-                folder_id, user_id, folder_path, access_type, parent_folder_path
+                folder_id, user_id, folder_path, access_type, parent_folder_id
             ) VALUES (
                 %s, %s, %s, %s, %s
             )
@@ -48,7 +48,7 @@ def store_folder(metadata: object, db_conn: object) -> bool:
         
         # Execute the SQL query
         cursor.execute(insert_query, (
-            metadata.folder_id, metadata.user_id, metadata.folder_path, metadata.access_type, metadata.parent_folder_path
+            metadata.folder_id, metadata.user_id, metadata.folder_path, metadata.access_type, metadata.parent_folder_id
         ))
         
         # Commit the transaction

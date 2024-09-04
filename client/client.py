@@ -13,6 +13,7 @@ from encrypt.choose_folder import choose_folder_encryption
 
 # Decryption Imports
 from decrypt.choose_file import choose_file_decryption
+from decrypt.choose_folder import choose_folder_decryption
 
 import sys
 
@@ -37,6 +38,7 @@ if __name__ == "__main__":
 
     # Connect encrypt and decrypt buttons to functions --> FOLDER
     window.encrypt_folder_button.clicked.connect(lambda: choose_folder_encryption(window))
+    window.decrypt_folder_button.clicked.connect(lambda: choose_folder_decryption(window))
 
     window.show()
     sys.exit(app.exec())

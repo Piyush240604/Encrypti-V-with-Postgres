@@ -21,28 +21,20 @@ def list_files_in_directory(window, directory, new_name, parent_folder) -> int:
     
     # Encryption and flag counter
     encryption_count: int = 0
-    '''flag: int = 0'''
 
-    print("DIRECTORY ITEMS:", directory_items)
-    print("---------------------")
     # Loop through each item in the directory
     for item in directory_items:
-        
-        ''' 
-        FEATURE TO BE ADDED PROBABLY 
-        # Check if the file has a V extension
-        if os.path.splitext(item)[1] == ".V":
-            print(item, "Already encrypted!")
-            flag = 1
-            continue
-        '''
-        print("Encryption Count:", encryption_count)
+    
 
         # Get full path of file and store it as file
         item = os.path.join(directory, item)
         
         # Check if the item is a file
         if os.path.isfile(item):
+            # Check if file is already encrypted
+            if item.split('.')[1] == "V":
+                continue
+
             perform_encryption(window, item, new_name, encryption_type, parent_folder)
             encryption_count += 1
         
@@ -72,17 +64,13 @@ def handle_destruction_and_encryption(window, selected_folder, new_name, encrypt
     
     '''if encryption_count == 0 and flag == 1:
         window.show_message("These Files are already Encrypted!")'''
-    if encryption_count == 0:
-        window.show_message("No Files in the Folder to Encrypt!")
-    else:
-        window.show_message("Encryption Successful!")
+    window.show_message("Encryption Successful!")
         
 # Function to choose encrypt folder
 def choose_folder_encryption(window):
 
     # Open window to select directory
     selected_folder = window.pick_directory()
-    print(selected_folder)
 
     # If no folder is selected
     if selected_folder == '':

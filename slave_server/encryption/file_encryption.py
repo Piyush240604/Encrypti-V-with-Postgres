@@ -10,8 +10,7 @@ def store_file(db_conn: object, metadata: object) -> bool:
     try:
         # Establish cursor
         cursor = db_conn.cursor()
-        print(metadata.file_id, metadata.user_id, metadata.folder_id, metadata.file_name, metadata.encryption_type, metadata.date_encrypted, metadata.iv, metadata.encryption_key, metadata.access_type)
-
+        
         # Write the insert query
         insert_query = sql.SQL("""
         INSERT INTO files (

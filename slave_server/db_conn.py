@@ -15,4 +15,3 @@ def get_db_connection() -> object:
 
 if __name__ == '__main__':
     db_conn = get_db_connection()
-    print(db_conn)

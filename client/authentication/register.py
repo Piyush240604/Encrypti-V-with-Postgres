@@ -11,9 +11,6 @@ def client_register_user(window):
     # Get username and password
     username = window.username_field.text()
     password = window.password_field.text()
-    
-    print(username, password)
-    print(type(username))
 
     # Check if username or password is entered
     if username == '' or password == '':
@@ -37,7 +34,6 @@ def client_register_user(window):
         response = requests.post(url, json=payload, headers=headers)
         
         if response:
-            print(response.json().get('message'))
             window.show_message("Registration successful. You can now log in")
             return 
         else:

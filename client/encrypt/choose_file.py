@@ -22,6 +22,7 @@ def choose_file_encryption(window):
     # If file has not been selected
     if selected_file == "":
         window.show_message("No File selected!")
+        return
 
     # If file is selected
     # Open window and show encryption options

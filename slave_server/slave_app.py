@@ -42,13 +42,13 @@ def decryption_client():
     # Check if Metadata is present
     if metadata:
         # Status is success
-        status: str = "success!"
+        status: str = True
         
         # Serialize the tuple
         metadata_json = json.dumps(metadata)
 
     else:
-        status: str = "Failed!"
+        status: str = False
         metadata_json = "None"
         
     
@@ -57,12 +57,12 @@ def decryption_client():
 # Decryption Metadata deletion
 @app.route('/delete_record', methods=['POST'])
 def delete_record():
-    print("INSIDE DELETE RECORD")
     # Receive message
     message_json = request.json
 
     # Deserialize the message
     message: dict = json.loads(message_json)
+
 
     deletion: bool = delete_metadata(db_conn=db_conn, metadata=message)
 

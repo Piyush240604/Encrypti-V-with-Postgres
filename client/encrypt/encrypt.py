@@ -78,8 +78,6 @@ def perform_encryption(window, selected_file, create_new_name, encryption_type, 
         
         # Convert file_id to bytes so it can be used by cipher
         file_id = uuid.UUID(file_id_str).bytes
-        
-        print("FILE ID: ", file_id, "TYPE: ", type(file_id))
 
         # Create a cipher
         cipher = file_id + encrypted_file_bytes

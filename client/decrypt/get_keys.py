@@ -1,9 +1,8 @@
 from json import dumps, loads
 from requests import post
-import uuid
 import base64
 
-def get_file_metadata(window: object, file_id: uuid):
+def get_file_metadata(window: object, file_ids: list):
     # Initialize URL and headers for POST
     url: str = "http://127.0.0.1:5001/decryption_client"
 
@@ -19,7 +18,7 @@ def get_file_metadata(window: object, file_id: uuid):
     message: dict = {
         "username": username,
         "password": password,
-        "file_id": str(file_id)
+        "file_id": file_ids
     }
 
     # Convert to Json
@@ -31,13 +30,18 @@ def get_file_metadata(window: object, file_id: uuid):
 
     # Deserialize metadata
     metadata_json = response["metadata"]
+    if metadata_json == "None":
+        return None
+
     metadata: dict = loads(metadata_json)
 
-    print(response["status"])
-    print("THIS IS THE METADATA: ", metadata)
-    # Convert iv and encryption_key back to bytes
-    metadata["iv"], metadata["encryption_key"] = base64.b64decode(metadata["iv"]), base64.b64decode(metadata["encryption_key"])
+    if not response["status"]:
+        return {}
     
+    # Convert iv and encryption_key back to bytes
+    metadata["iv"] = [base64.b64decode(iv) for iv in metadata["iv"]]
+    metadata["encryption_key"] = [base64.b64decode(encryption_key) for encryption_key in metadata["encryption_key"]]
+
     # Return metadata
     return metadata
     

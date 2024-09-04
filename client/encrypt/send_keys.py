@@ -15,7 +15,6 @@ def send_keys(encryption_metadata):
     # Send details to the server and receive confirmation using requests
     response_json = post(url, json=encryption_metadata_json, headers=headers)
     response_data = response_json.json()
-    print(response_data)
 
     # See if the status is successful
     if response_data["status"]:
@@ -23,4 +22,5 @@ def send_keys(encryption_metadata):
         return response_data["file_id"]
     else:
         # Error in status which means there was an issue in metadata storage
+        print("Error during Encryption: Metadata Storage")
         return "E"
